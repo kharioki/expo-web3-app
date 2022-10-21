@@ -1,18 +1,33 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { ethers } from 'ethers';
 
 export default function App() {
+  const [wallet, setWallet] = useState(null);
 
-  useEffect(() => {
+  const handleGenerateRandomWallet = async () => {
     const w = ethers.Wallet.createRandom();
-    console.log({ walletObject: w, mnemonic: w.mnemonic });
-  }, []);
+    setWallet(w);
+  };
+
+  // useEffect(() => {
+  //   const w = ethers.Wallet.createRandom();
+  //   console.log({ walletObject: w, mnemonic: w.mnemonic });
+  // }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>Generate random wallet!</Text>
+      <TouchableOpacity onPress={handleGenerateRandomWallet} style={styles.button}>
+        <Text style={styles.buttonText}>Generate</Text>
+      </TouchableOpacity>
+      {wallet && (
+        <View>
+          <Text>Wallet address: {wallet.address}</Text>
+          <Text>Wallet mnemonic: {wallet.mnemonic.phrase}</Text>
+        </View>
+      )}
       <StatusBar style="auto" />
     </View>
   );
@@ -24,5 +39,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  button: {
+    backgroundColor: 'blue',
+    padding: 10,
+    borderRadius: 5,
+    marginTop: 10,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 20,
+    letterSpacing: 1,
   },
 });
