@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
 
 #### Screenshot of the app:
 
-![screenshot]('./../simulator_screenshot.png')
+![simulator_screenshot](https://user-images.githubusercontent.com/22290070/197229961-d8da59fe-0f22-4380-b88f-c4d6b854a90d.png)
