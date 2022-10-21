@@ -1,3 +1,5 @@
+import 'node-libs-react-native/globals.js';
+import '@ethersproject/shims';
 import { registerRootComponent } from 'expo';
 
 import App from './App';
